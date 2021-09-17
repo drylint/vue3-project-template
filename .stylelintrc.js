@@ -2,14 +2,12 @@ module.exports = {
   root: true,
   extends: [
     'stylelint-config-standard',
-  ],
-  plugins: [
-    'stylelint-scss',
+    'stylelint-config-sass-guidelines',
   ],
   ignoreFiles: [
-    '**/node_modules/**',
-    '**/dist/**',
-    '**/wxcomponents/**',
+    '**/node_modules/**/*',
+    '**/dist/**/*',
+    '**/wxcomponents/**/*',
     '**/_*.css',
     '**/iconfont.css',
     '**/ant-design*.css',
@@ -27,9 +25,14 @@ module.exports = {
     'unit-no-unknown': [true, {
       ignoreUnits: ['rpx'],
     }],
+    // 检查单位的大小写，比如 px, PX, Px，不启用
+    'unit-case': null,
     // 对未知的伪类报错，忽略 vue 使用的 ::v-deep
     'selector-pseudo-element-no-unknown': [true, {
       ignorePseudoElements: ['v-deep'],
     }],
+    'selector-max-id': 1,
+    'max-nesting-depth': null,
+    'selector-no-qualifying-type': null,
   },
 }

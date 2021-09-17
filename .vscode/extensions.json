@@ -1,0 +1,27 @@
+{
+  "recommendations": [
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "coenraads.bracket-pair-colorizer-2",
+    "formulahendry.code-runner",
+    "msjsdiag.debugger-for-chrome",
+    "mikestead.dotenv",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "vincaslt.highlight-matching-tag",
+    "kisstkondoros.vscode-gutter-preview",
+    "ritwickdey.liveserver",
+    "shd101wyy.markdown-preview-enhanced",
+    "davidanson.vscode-markdownlint",
+    "qiu8310.minapp-vscode",
+    "shan.code-settings-sync",
+    "stylelint.vscode-stylelint",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "pflannery.vscode-versionlens",
+    "octref.vetur",
+    "aaron-bond.better-comments",
+    "mhutchie.git-graph",
+    "naumovs.color-highlight",
+  ]
+}
