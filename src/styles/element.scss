@@ -1,0 +1,9 @@
+// 针对 element-ui 的全局样式
+
+.g-el-loading {
+  font-size: 60px;
+  .el-icon-loading,
+  .el-loading-text {
+    color: #aaa !important;
+  }
+}

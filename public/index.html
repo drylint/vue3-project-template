@@ -1,17 +1,41 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
   <head>
     <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover,user-scalable=no">
+    <meta name="referrer" content="no-referrer" />
+    <%=
+      NODE_ENV === 'development' ?
+      `
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.12/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-router@4.0.11/dist/vue-router.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuex@4.0.2/dist/vuex.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vant@3.2.3/lib/vant.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/eruda@1.10.3/eruda.min.js"></script>
+        <script>eruda.init();</script>
+      ` :
+      `
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.12/dist/vue.global.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-router@4.0.11/dist/vue-router.global.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuex@4.0.2/dist/vuex.global.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@0.20.0/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vant@3.2.3/lib/vant.min.js"></script>
+      `
+    %>
+
+    <!-- iconfont  -->
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2659420_pbkerzoyysq.css">
+
+    <!-- jssdk -->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+
+    <title></title>
   </head>
   <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>

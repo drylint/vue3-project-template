@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  min-height: 0;
+  min-width: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  box-sizing: border-box;
+  // font-size: calc(100vw / 3.75);
+}
+
+body {
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+}

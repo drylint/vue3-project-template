@@ -1,0 +1,17 @@
+
+html {
+  font-size: calc(100vw / 19.2);
+  // stylelint-disable-next-line unit-case
+  min-height: 768PX;
+  // stylelint-disable-next-line unit-case
+  min-width: 1366PX;
+}
+
+// 宽度小于 1600px 时
+@media screen and (max-width: 1600px) {
+  html {
+    // 1600 / 1920
+    // stylelint-disable-next-line unit-case
+    font-size: 83.33PX;
+  }
+}

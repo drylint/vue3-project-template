@@ -1,0 +1,66 @@
+// flex布局
+@mixin flex($justify: space-between, $align: center, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: nowrap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// 按钮
+@mixin btn ($bg: #448ACA, $txt-color: #ffffff, $width: 100%, $fontSize: 14px) {
+  text-align: center;
+  background: $bg;
+  color: $txt-color;
+  width: $width;
+  font-size: $fontSize;
+  padding: 0.5em 0;
+  border-radius: 5px;
+  &:hover {
+    background: #559bdb;
+  }
+}
+
+// 单行显示省略号
+@mixin singleline-ellipsis () {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 多行显示省略号
+@mixin multiline-ellipsis ($count: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $count;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+// 渐变色文字
+@mixin linear-gradient-text ($params...) {
+  background: linear-gradient($params);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@mixin fixed-background ($image) {
+  &::before {
+    content: ' ';
+    position: fixed; // 代替 background-attachment: fixed，解决移动端不兼容的问题
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: transparent $image no-repeat center 0;
+    background-size: cover;
+    // background-attachment: fixed; // 不再使用，而是使用 position: fixed; 代替
+    // will-change: transform; // 创建新的渲染层
+    z-index: -1;
+  }
+}

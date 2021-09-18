@@ -1,0 +1,45 @@
+
+$direction: (
+  row: row,
+  col: column,
+);
+
+$justify: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+);
+
+$align: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  baseline: baseline,
+  stretch: stretch,
+);
+
+$wrap: (
+  nowrap: nowrap,
+  wrap: wrap,
+);
+
+@each $d in map-keys($direction) {
+  $dir: #{if($d == 'row', '', -$d)};
+
+  @each $w in map-keys($wrap) {
+    $wra: #{if($w == nowrap, '', -$w)};
+
+    @each $j in map-keys($justify) {
+      @each $a in map-keys($align) {
+        .flex#{$dir}#{$wra}-#{$j}-#{$a} {
+          display: flex;
+          flex-flow: map-get($direction, $d) map-get($wrap, $w);
+          justify-content: map-get($justify, $j);
+          align-items: map-get($align, $a);
+        }
+      }
+    }
+  }
+}

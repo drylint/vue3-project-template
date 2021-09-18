@@ -1,0 +1,54 @@
+@import './mixins.scss';
+
+// 本文件为全局样式配置
+
+// 单行显示省略号
+.g-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 两行显示省略号
+.g-ellipsis-2 {
+  @include multiline-ellipsis(2);
+}
+
+// 三行显示省略号
+.g-ellipsis-3 {
+  @include multiline-ellipsis(3);
+}
+
+// 旋转动画关键帧
+@keyframes g-keyframes-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// 旋转 class
+.g-rotate {
+  animation: 0.8s g-keyframes-rotate linear infinite;
+}
+
+// 基础按钮样式
+.g-btn-reset {
+  border: 0;
+  outline: 0;
+  &::after {
+    border: 0;
+    outline: 0;
+    display: none;
+  }
+}
+
+// 绝对定位且水平垂直居中
+.g-absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
