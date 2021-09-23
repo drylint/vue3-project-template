@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "cz": "cz",
+    "prepare": "husky install",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prepare": "husky install"
+    "config": "vue inspect > output.js",
+    "nodemon": "nodemon node_modules/@vue/cli-service/bin/vue-cli-service.js serve"
   },
   "dependencies": {
     "core-js": "^3.6.5",

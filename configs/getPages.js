@@ -1,8 +1,8 @@
 const glob = require('glob')
 
-const { RUN_PAGE = '' } = process.env
-console.log(`正在运行/打包的页面是 src/pages/${RUN_PAGE}`)
-const RUN_PAGE_LIST = RUN_PAGE.split(/\s*,\s*/iu)
+const { VUE_APP_RUN_PAGE = '' } = process.env
+console.log(`正在运行/打包的页面是 src/pages/${VUE_APP_RUN_PAGE}`)
+const RUN_PAGE_LIST = VUE_APP_RUN_PAGE.split(/\s*,\s*/iu)
 
 // glob 匹配获取多页路径方法
 const getPages = basePath => {
@@ -18,7 +18,7 @@ const getPages = basePath => {
   // 遍历 pages 下的目录名
   pageNameList.forEach(pageName => {
     // 如果有 2 个及以上页面，且指定了运行页面，且指定页面不包含当前页面，直接返回
-    if (pageCount > 1 && RUN_PAGE && isRunPageExists && !RUN_PAGE_LIST.includes(pageName)) {
+    if (pageCount > 1 && VUE_APP_RUN_PAGE && isRunPageExists && !RUN_PAGE_LIST.includes(pageName)) {
       return
     }
     // pages的key值，使用目录结构。生成的静态资源，就会按这个目录存放。

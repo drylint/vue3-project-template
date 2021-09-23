@@ -27,7 +27,6 @@ module.exports = {
       extensions: ['.vue', '.tsx', '.ts', '.jsx', '.js', '.json'],
       alias: {
         '@': pathJoin('src'),
-        '@admin': pathJoin('src/pages/admin'),
       },
     }
 
@@ -58,15 +57,9 @@ module.exports = {
     if (isProduction) {
 
       // 打包分析
-      config.plugins.push(new BundleAnalyzerPlugin({
-        analyzerMode: 'disabled', // static | disabled
-        openAnalyzer: false,
-      }))
-
-      // // 启用 gzip 压缩插件
-      // config.plugins.push(new CompressionWebpackPlugin({
-      //   test: /\.js$|\.html$|\.css$/u,
-      //   threshold: 4096, // 超过 4kb 压缩
+      // config.plugins.push(new BundleAnalyzerPlugin({
+      //   analyzerMode: 'static', // static | disabled
+      //   openAnalyzer: false,
       // }))
 
       // terser 去除 console 和 debugger
@@ -89,12 +82,21 @@ module.exports = {
 
     // 生产环境的配置
     config.when(isProduction, config => {
+      // config.optimization.minimizer('terser')
       // 启用 gzip 压缩插件
       config
         .plugin('compression-webpack-plugin')
         .use(CompressionWebpackPlugin, [{
           test: /\.js$|\.html$|\.css$/u,
           threshold: 4096, // 超过 4kb 压缩
+        }])
+
+      // 启用打包分析插件
+      config
+        .plugin('webpack-bundle-analyzer')
+        .use(BundleAnalyzerPlugin, [{
+          analyzerMode: 'disabled', // static | disabled
+          openAnalyzer: false,
         }])
     })
   },
