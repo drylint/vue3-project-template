@@ -82,7 +82,21 @@ module.exports = {
 
     // 生产环境的配置
     config.when(isProduction, config => {
-      // config.optimization.minimizer('terser')
+
+      // config
+      //   .plugin('html-index')
+      //   .tap(args => {
+      //     console.log('html', args)
+      //     return args
+      //   })
+
+      config.optimization.minimizer('terser').tap(options => {
+        const { compress } = options[0].terserOptions
+        compress.drop_console = false
+        compress.drop_debugger = true
+        return options
+      })
+
       // 启用 gzip 压缩插件
       config
         .plugin('compression-webpack-plugin')

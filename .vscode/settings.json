@@ -5,4 +5,13 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true,
   },
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+  ],
 }
