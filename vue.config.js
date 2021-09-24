@@ -2,6 +2,7 @@ const path = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin')
+const QrcodeTerminalWebpackPlugin = require('./configs/qrcode-terminal-webpack-plugin')
 
 // const pxtorem = require('postcss-pxtorem')
 const getPages = require('./configs/getPages')
@@ -22,6 +23,9 @@ module.exports = {
   outputDir: 'dist',
   productionSourceMap: false,
   configureWebpack (config) {
+    config.plugins.push(new QrcodeTerminalWebpackPlugin({
+      small: true,
+    }))
 
     config.resolve = {
       extensions: ['.vue', '.tsx', '.ts', '.jsx', '.js', '.json'],
@@ -63,8 +67,8 @@ module.exports = {
       // }))
 
       // terser 去除 console 和 debugger
-      config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
-      config.optimization.minimizer[0].options.terserOptions.compress.drop_debugger = true
+      // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
+      // config.optimization.minimizer[0].options.terserOptions.compress.drop_debugger = true
 
     }
   },
