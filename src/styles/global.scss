@@ -4,9 +4,9 @@
 
 // 单行显示省略号
 .g-ellipsis {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 // 两行显示省略号
@@ -40,15 +40,15 @@
   outline: 0;
   &::after {
     border: 0;
-    outline: 0;
     display: none;
+    outline: 0;
   }
 }
 
 // 绝对定位且水平垂直居中
 .g-absolute-center {
+  left: 50%;
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
 }
