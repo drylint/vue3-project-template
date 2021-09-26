@@ -1,7 +1,14 @@
 module.exports = {
   root: true,
   extends: [
+    /**
+     * extends: 'stylelint-config-recommended'
+     */
     'stylelint-config-standard',
+
+    /**
+     * "plugins": ["stylelint-order", "stylelint-scss"]
+     */
     'stylelint-config-sass-guidelines',
   ],
   ignoreFiles: [

@@ -1,3 +1,4 @@
+$a: 1;
 
 $direction: (
   row: row,
@@ -34,10 +35,10 @@ $wrap: (
     @each $j in map-keys($justify) {
       @each $a in map-keys($align) {
         .flex#{$dir}#{$wra}-#{$j}-#{$a} {
+          align-items: map-get($align, $a);
           display: flex;
           flex-flow: map-get($direction, $d) map-get($wrap, $w);
           justify-content: map-get($justify, $j);
-          align-items: map-get($align, $a);
         }
       }
     }

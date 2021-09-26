@@ -145,7 +145,11 @@ module.exports = {
           : [],
       },
       scss: {
-        prependData: '@use "~@/styles/variables.scss" as *;@use "~@/styles/mixins.scss" as *;',
+        prependData: `
+          @use "~@/styles/vars.scss" as *;
+          @use "~@/styles/mixins.scss" as *;
+          @use "~@/styles/theme.scss" as *;
+        `,
       },
     },
   },

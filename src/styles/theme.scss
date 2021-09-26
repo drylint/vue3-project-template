@@ -1,0 +1,22 @@
+@use 'sass:meta';
+@use 'sass:string';
+@use 'sass:map';
+@use './vars.scss';
+
+// 将 vars 模块获取为 map 类型
+$vars-map: meta.module-variables(vars);
+
+// 基本不使用，兼容不支持 var() 的客户端时使用
+@mixin t ($prop, $var) {
+  $value: map.get($vars-map, $var);
+
+  #{$prop}: $value;
+  #{$prop}: var(--#{$var}, $value);
+}
+
+// 不需要兼容不支持 var() 的客户端时使用
+@function t ($var) {
+  $value: map.get($vars-map, $var);
+
+  @return var(--#{$var}, $value);
+}

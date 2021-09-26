@@ -1,4 +1,5 @@
-@import './mixins.scss';
+@import './mixins';
+@import './keyframes';
 
 // 本文件为全局样式配置
 
@@ -19,19 +20,9 @@
   @include multiline-ellipsis(3);
 }
 
-// 旋转动画关键帧
-@keyframes g-keyframes-rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 // 旋转 class
 .g-rotate {
-  animation: 0.8s g-keyframes-rotate linear infinite;
+  animation: 1s g-keyframes-rotate linear infinite;
 }
 
 // 基础按钮样式
