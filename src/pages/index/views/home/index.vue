@@ -1,34 +1,53 @@
 <template>
-  <van-button type="primary">
-    主要按钮
-  </van-button>
-  <van-button type="success">
-    成功按钮
-  </van-button>
-  <van-button type="default">
-    默认按钮
-  </van-button>
-  <van-button type="warning">
-    警告按钮
-  </van-button>
-  <van-button type="danger">
-    危险按钮
-  </van-button>
+  <view class="view-temp">
+    <van-button type="primary">
+      主要按钮
+    </van-button>
+    <van-button type="success">
+      成功按钮
+    </van-button>
+    <div>
+      <img :src="logo" alt="" srcset="">
+    </div>
+  </view>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import { reqHomeInfo } from '@/api'
+import logo from '@/assets/logo.png'
+import FingerprintJS from '@fingerprintjs/fingerprintjs'
 export default defineComponent({
   data () {
     return {
+      logo,
     }
   },
   created () {
     // ...
+    // this.reqHomeInfo()
+    this.handleFingerPrint()
   },
   methods: {
     // ...
+    reqHomeInfo () {
+      reqHomeInfo().then(data => {
+        console.log(data)
+      })
+    },
+    handleFingerPrint () {
+      // Initialize an agent at application startup.
+      const fpPromise = FingerprintJS.load();
+      (async () => {
+        // Get the visitor identifier when you need it.
+        const fp = await fpPromise
+        const result = await fp.get()
+
+        // This is the visitor identifier:
+        const { visitorId } = result
+        console.log(result, visitorId)
+      })()
+    },
   },
 })
 </script>
@@ -36,5 +55,9 @@ export default defineComponent({
 <style lang="scss" scoped>
 .view-temp {
   font-size: inherit;
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
 }
 </style>
