@@ -12,6 +12,8 @@
     "nodemon": "nodemon node_modules/@vue/cli-service/bin/vue-cli-service.js serve"
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^3.3.0",
+    "axios": "^0.21.4",
     "core-js": "^3.6.5",
     "mitt": "^3.0.0",
     "vant": "^3.2.3",
