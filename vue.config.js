@@ -8,7 +8,7 @@ const QrcodeTerminalWebpackPlugin = require('./configs/qrcode-terminal-webpack-p
 const getPages = require('./configs/getPages')
 // 环境变量获取
 // eslint-disable-next-line no-unused-vars
-const { VUE_APP_baseURL, NODE_ENV, MOCK_SERVER, ENV_PX_TO_REM } = process.env
+const { VUE_APP_BASE_URL, NODE_ENV, MOCK_SERVER, ENV_PX_TO_REM } = process.env
 
 // 是否是生产环境
 const isProduction = NODE_ENV === 'production'
@@ -55,6 +55,7 @@ module.exports = {
       'tinymce': 'tinymce',
       'nprogress': 'NProgress',
       'compressorjs': 'Compressor',
+      'FingerprintJS': '@fingerprintjs/fingerprintjs',
     }
 
     // 生产环境配置
@@ -122,7 +123,7 @@ module.exports = {
     // open: true,
     proxy: {
       '/api': {
-        target: VUE_APP_baseURL,
+        target: VUE_APP_BASE_URL,
         ws: false,
         changeOrigin: true,
         pathRewrite: {
