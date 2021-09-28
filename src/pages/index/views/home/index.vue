@@ -17,6 +17,7 @@ import { defineComponent } from 'vue'
 import { reqHomeInfo } from '@/api'
 import logo from '@/assets/logo.png'
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
+import '@/utils/crypto'
 export default defineComponent({
   data () {
     return {
@@ -45,7 +46,7 @@ export default defineComponent({
 
         // This is the visitor identifier:
         const { visitorId } = result
-        console.log(result, visitorId)
+        console.log('FingerprintJS:', result, visitorId)
       })()
     },
   },
