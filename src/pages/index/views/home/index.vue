@@ -17,7 +17,8 @@ import { defineComponent } from 'vue'
 import { reqHomeInfo } from '@/api'
 import logo from '@/assets/logo.png'
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
-import '@/utils/crypto'
+// import '@/utils/crypto'
+import '@/utils/jsencrypt'
 export default defineComponent({
   data () {
     return {

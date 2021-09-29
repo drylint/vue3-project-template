@@ -1,4 +1,4 @@
-import Cryptojs, { MD5, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512 } from 'crypto-js'
+import Cryptojs from 'crypto-js'
 
 console.log('Cryptojs------------------------------------------------------------------')
 
@@ -18,9 +18,9 @@ console.log('originalText', originalText)
 
 console.log('Cryptojs------------------------------------------------------------------')
 
-const arr = [MD5, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512]
+// const arr = [MD5, SHA1, SHA224, SHA256, SHA3, SHA384, SHA512]
 
-arr.forEach(fn => {
-  const str = fn(msg).toString()
-  console.log(fn.name, str.length, str)
-})
+// arr.forEach(fn => {
+//   const str = fn(msg).toString()
+//   console.log(fn.name, str.length, str)
+// })
