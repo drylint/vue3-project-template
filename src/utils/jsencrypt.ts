@@ -1,8 +1,7 @@
 import JSEncrypt from 'jsencrypt'
 
 const jsencrypt = new JSEncrypt({
-  // @ts-ignore
-  default_key_size: 1024,
+  default_key_size: '1024',
 })
 
 console.log(jsencrypt)
