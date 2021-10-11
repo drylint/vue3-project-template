@@ -14,4 +14,7 @@
     "vue",
     "markdown",
   ],
+  "files.associations": {
+    "*.env.*": "dotenv",
+  }
 }

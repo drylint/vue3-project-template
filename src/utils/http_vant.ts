@@ -102,7 +102,6 @@ const REQ = ({
     }).then(res => {
       resolve(res?.data?.data || res?.data)
     }).catch(err => {
-      console.log('请求发生错误')
       reject(err)
     }).finally(() => {
       loading && loading.clear()

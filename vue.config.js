@@ -4,29 +4,28 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin')
 const QrcodeTerminalWebpackPlugin = require('./configs/qrcode-terminal-webpack-plugin')
 
-// const pxtorem = require('postcss-pxtorem')
-const getPages = require('./configs/getPages')
-// 环境变量获取
-// eslint-disable-next-line no-unused-vars
-const { VUE_APP_BASE_URL, NODE_ENV, MOCK_SERVER, ENV_PX_TO_REM } = process.env
-
-// 是否是生产环境
-const isProduction = NODE_ENV === 'production'
-
 // 访问绝对路径
 const pathJoin = dir => path.join(__dirname, dir)
 
-module.exports = {
-  pages: getPages('src/pages/*'), // 多页配置
+// 环境变量获取
+const { VUE_APP_BASE_URL, NODE_ENV, MOCK_SERVER, ENV_PX_TO_REM, VUE_APP_RUN_MODE } = process.env
+
+// 是否是开发环境
+const isDevelopment = NODE_ENV === 'development'
+// 是否是生产环境
+const isProduction = NODE_ENV === 'production'
+// 是否构建目标为：库
+const isTargetLib = VUE_APP_RUN_MODE === 'lib'
+
+const targetAppConfig = {
+  pages: require('./configs/getPages')('src/pages/*'), // 多页配置
   lintOnSave: 'warning',
   publicPath: './',
   outputDir: 'dist',
   productionSourceMap: false,
   configureWebpack (config) {
-    config.plugins.push(new QrcodeTerminalWebpackPlugin({
-      small: true,
-    }))
 
+    // 构建目标为库时，不应设置此项，否则会报错 ~entry 找不到
     config.resolve = {
       extensions: ['.vue', '.tsx', '.ts', '.jsx', '.js', '.json'],
       alias: {
@@ -58,22 +57,9 @@ module.exports = {
       'FingerprintJS': '@fingerprintjs/fingerprintjs',
     }
 
-    // 生产环境配置
-    if (isProduction) {
-
-      // 打包分析
-      // config.plugins.push(new BundleAnalyzerPlugin({
-      //   analyzerMode: 'static', // static | disabled
-      //   openAnalyzer: false,
-      // }))
-
-      // terser 去除 console 和 debugger
-      // config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
-      // config.optimization.minimizer[0].options.terserOptions.compress.drop_debugger = true
-
-    }
   },
   chainWebpack (config) {
+    // 启用 CSS 代码检查
     config
       .plugin('stylelint-webpack-plugin')
       .use(StylelintWebpackPlugin, [{
@@ -85,16 +71,20 @@ module.exports = {
         cache: false,
       }])
 
+    // 开发环境的配置
+    config.when(isDevelopment, config => {
+      // 开发环境，开启二维码地址
+      config
+        .plugin('qrcode-terminal-webpack-plugin')
+        .use(QrcodeTerminalWebpackPlugin, [{
+          small: true,
+        }])
+
+    })
+
     // 生产环境的配置
     config.when(isProduction, config => {
-
-      // config
-      //   .plugin('html-index')
-      //   .tap(args => {
-      //     console.log('html', args)
-      //     return args
-      //   })
-
+      // terser 插件压缩代码配置
       config.optimization.minimizer('terser').tap(options => {
         const { compress } = options[0].terserOptions
         compress.drop_console = false
@@ -155,3 +145,5 @@ module.exports = {
     },
   },
 }
+
+module.exports = isTargetLib ? require('./configs/target_lib') : targetAppConfig
