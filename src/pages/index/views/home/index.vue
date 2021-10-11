@@ -11,14 +11,15 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, Ref } from 'vue'
-import { reqHomeInfo } from '@/api'
+import { reqUserList } from '@/api/user'
 // import testJpg from '@/assets/test.jpg'
 // import logo from '@/assets/logo.png'
 export default defineComponent({
   setup () {
     const homeData: Ref<IApiHomeData> = ref({})
     const reqHomeData = async () => {
-      homeData.value = await reqHomeInfo()
+      const data = await reqUserList()
+      console.log(data)
     }
     onMounted(reqHomeData)
     return {

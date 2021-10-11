@@ -33,7 +33,11 @@ const reqFn = (config: AxiosRequestConfig) => {
 // 响应拦截函数，接收响应对象为参数，用于根据响应结果做出相应操作
 // 响应成功(status === 2xx)时会被调用
 const resFn = (res: AxiosResponse) => {
-  const { code, msg, message, isShowMsg } = res.data
+  const { code, success, status, msg, message, isShowMsg } = res.data
+  // 如果 code/success/status/... 均不存在，表示不需要判断内部状态码，直接放行
+  if ([code, success, status].every(v => v === undefined)) {
+    return res
+  }
   // const isSuccess = code >= 200 && code < 300
   const isSuccess = code === 1
   // 请求成功
