@@ -1,5 +1,7 @@
 <template>
-  <BaseForm />
+  <div class="view-form">
+    <BaseForm />
+  </div>
 </template>
 
 <script lang="ts">
@@ -23,7 +25,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.view-temp {
+.view-form {
+  background: #e5e5e5;
   font-size: inherit;
+  min-height: 100vh;
+  padding: 1em 0 0;
 }
 </style>

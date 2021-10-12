@@ -1,19 +1,28 @@
 <template>
   <van-form
+    class="use-van-form"
     v-bind="{
       ...$attrs,
     }"
-    @submit="handleSubmit"
+    @submit.prevent="handleSubmit"
   >
     <slot>
-      <BaseField
-        v-model="formData.username"
-        label="姓名"
-        required
-        :rules="[{ required: true, message: '不能为空' }]"
-      />
-
-      <div style="margin: 16px;">
+      <van-cell-group>
+        <BaseField
+          v-model="formData.username"
+          label="姓名"
+          required
+          :rules="[{ required: true, message: '不能为空' }]"
+        />
+        <BaseField
+          label="是否选中"
+        >
+          <template #input>
+            <BaseSwitch v-model="formData.isTrue" />
+          </template>
+        </BaseField>
+      </van-cell-group>
+      <div class="btn-box">
         <van-button
           round
           block
@@ -30,9 +39,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import BaseField from '@/components/BaseField/index.vue'
+import BaseSwitch from '@/components/BaseSwitch/index.vue'
 export default defineComponent({
   components: {
     BaseField,
+    BaseSwitch,
   },
   inheritAttrs: false,
   props: {
@@ -61,6 +72,7 @@ export default defineComponent({
     return {
       formData: {
         username: '',
+        isTrue: false,
       },
     }
   },
@@ -81,7 +93,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.view-temp {
+.use-van-form {
+  background-color: #fff;
   font-size: inherit;
+  .btn-box {
+    padding: 2em var(--van-cell-horizontal-padding, 16px);
+  }
 }
 </style>
