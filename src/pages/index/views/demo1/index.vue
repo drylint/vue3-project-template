@@ -1,7 +1,7 @@
 <template>
   <div class="view-temp">
     <BaseButton
-      v-pin:top="'3em'"
+      v-pin:bottom="'3em'"
       v-pin:right="'1em'"
       type="primary"
       @click="handleClick"
@@ -9,7 +9,7 @@
       按钮组件
     </BaseButton>
     <br>
-    <BaseImage :src="require('@/assets/test.jpg')" />
+    <BaseImage v-hide="1" :src="require('@/assets/test.jpg')" />
     <br>
     <van-field
       v-model="inputValue"
