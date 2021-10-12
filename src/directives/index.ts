@@ -1,15 +1,14 @@
 import type { App } from 'vue'
 
-// 全局指令
+// 自定义指令
 import hide from './hide'
 import focus from './focus'
 import pin from './pin'
 
-const install = (app: App, options = {}): void => {
-  // 增加 v-hide 指令
-  hide(app, options)
-  focus(app)
-  pin(app)
+const install = (app: App): void => {
+  hide(app) // v-hide
+  focus(app) // v-focus
+  pin(app) // v-pin
 }
 
 export default install
