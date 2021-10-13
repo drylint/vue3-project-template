@@ -4,4 +4,4 @@ import { REQ } from '@/utils/http_vant'
 export const reqHomeInfo = (data = {}): Promise<IApiHomeData> => REQ({
   url: '/api/wechat/index',
   data,
-}) as Promise<IApiHomeData>
+}) as unknown as Promise<IApiHomeData>

@@ -3,23 +3,23 @@
     v-bind="{
       ...$attrs,
     }"
-  />
+  >
+    <!-- slot 透传 -->
+    <template
+      v-for="slotName in Object.keys($slots)"
+      #[slotName]="slotProps"
+    >
+      <slot :name="slotName" v-bind="slotProps || {}" />
+    </template>
+  </van-image>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  data () {
-    return {
-    }
-  },
-  created () {
-    // ...
-    console.log(process.env.TZ)
-  },
-  methods: {
-    // ...
+  inheritAttrs: false,
+  props: {
   },
 })
 </script>

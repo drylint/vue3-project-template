@@ -4,7 +4,13 @@
       ...$attrs,
     }"
   >
-    <slot />
+    <!-- slot 透传 -->
+    <template
+      v-for="slotName in Object.keys($slots)"
+      #[slotName]="slotProps"
+    >
+      <slot :name="slotName" v-bind="slotProps || {}" />
+    </template>
   </van-button>
 </template>
 
@@ -13,17 +19,6 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   inheritAttrs: false,
-  data () {
-    return {
-    }
-  },
-  created () {
-    console.log(this.$attrs)
-    // ...
-  },
-  methods: {
-    // ...
-  },
 })
 </script>
 

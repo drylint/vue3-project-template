@@ -1,8 +1,8 @@
 declare interface IApiHomeData {
-  arealist?: unknown[],
-  bannerlist?: unknown[],
-  categorylist?: unknown[],
-  nav_image?: string,
-  recommendlist?: unknown[],
-  selectarea?: '-1' | '0',
+  arealist: any[],
+  bannerlist: any[],
+  categorylist: any[],
+  nav_image: string,
+  recommendlist: any[],
+  selectarea: '-1' | '0',
 }
