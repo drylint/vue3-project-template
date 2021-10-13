@@ -8,14 +8,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  data () {
-    return {
-    }
-  },
-  created () {
-    // ...
-  },
-  methods: {
+  setup () {
     // ...
   },
 })

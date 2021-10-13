@@ -19,14 +19,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   inheritAttrs: false,
-  data () {
-    return {
-    }
-  },
-  created () {
-    // ...
-  },
-  methods: {
+  setup () {
     // ...
   },
 })

@@ -12,7 +12,7 @@
         <BaseImage :src="item.banner" />
       </van-swipe-item>
     </van-swipe>
-    <BaseButton @click="handleClick">点击</BaseButton>
+    <BaseButton type="primary" block round @click="handleClick">点击</BaseButton>
   </div>
 </template>
 
