@@ -32,6 +32,8 @@ module.exports = {
         'init-declarations': [0],
         // 禁止重复声明变量，ts 声明文件中函数重载时需要，所以关闭
         'no-redeclare': [0],
+        // 禁止一个文件出现多个 class ，ts 声明合并时需要，所以关闭
+        'max-classes-per-file': [0],
       },
     },
   ],
