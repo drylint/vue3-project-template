@@ -2,7 +2,7 @@ import Axios, {
   AxiosRequestConfig,
   AxiosResponse,
   AxiosError,
-  AxiosPromise,
+  // AxiosPromise,
 } from 'axios'
 import { removeSession, getSession } from '@/utils/storage'
 import { Toast } from 'vant'
@@ -86,31 +86,38 @@ const errorFn = (msg = '') => (error: AxiosError) => {
 axios.interceptors.request.use(reqFn, errorFn('请求出错，请稍后重试'))
 axios.interceptors.response.use(resFn, errorFn('响应出错，请稍后重试'))
 
+interface IREQ {
+  <T>(
+    req: AxiosRequestConfig,
+    config?: {
+      isShowLoading?: boolean
+    }
+  ): Promise<T>
+}
+
 // 请求方法
-const REQ = ({
+const REQ: IREQ = async <T>({
   method = 'POST',
   url = '',
   data = {},
   timeout = 40 * 1000,
 }: AxiosRequestConfig = {}, {
-  isShowLoading = true,
-} = {}): AxiosPromise => {
+    isShowLoading = true,
+  } = {}): Promise<T> => {
+  const dataKey = ['PUT', 'POST', 'DELETE', 'PATCH'].includes(method.toUpperCase()) ? 'data' : 'params'
   let loading: ComponentInstance | null = null
   isShowLoading && (loading = Toast.loading({}))
-  return new Promise((resolve, reject) => {
-    axios({
+  try {
+    const res = await axios({
       method,
       url,
-      [method.toUpperCase() === 'POST' ? 'data' : 'params']: data,
+      [dataKey]: data,
       timeout,
-    }).then(res => {
-      resolve(res?.data?.data || res?.data)
-    }).catch(err => {
-      reject(err)
-    }).finally(() => {
-      loading && loading.clear()
     })
-  })
+    return res.data.data || res.data
+  } finally {
+    loading && loading.clear()
+  }
 }
 
 export {

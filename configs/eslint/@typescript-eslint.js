@@ -23,15 +23,19 @@ module.exports = {
     // 禁止不必要的 constructor，ES2015 为没有指定构造函数的类提供了默认构造函数。没必要写空的或仅调用了 super() 的构造函数
     'no-useless-constructor': [0],
     '@typescript-eslint/no-useless-constructor': [2],
+
+    // 禁止重复声明变量，ts 声明文件中函数重载时需要，所以关闭
+    'no-redeclare': [0],
+    '@typescript-eslint/no-redeclare': [2],
+
+    // 声明变量必须初始化值，ts 声明文件中不应该初始化，所以关闭
+    'init-declarations': [0],
+    '@typescript-eslint/init-declarations': [2],
   },
   overrides: [
     {
       files: ['*.d.ts'], // 所有 ts 声明文件
       rules: {
-        // 声明变量必须初始化值，ts 声明文件中不应该初始化，所以关闭
-        'init-declarations': [0],
-        // 禁止重复声明变量，ts 声明文件中函数重载时需要，所以关闭
-        'no-redeclare': [0],
         // 禁止一个文件出现多个 class ，ts 声明合并时需要，所以关闭
         'max-classes-per-file': [0],
       },

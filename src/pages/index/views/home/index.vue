@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref, onMounted, Ref } from 'vue'
 import { reqHomeInfo } from '@/api/index'
 import BaseButton from '@/components/BaseButton/index.vue'
 import BaseImage from '@/components/BaseImage/index.vue'
@@ -36,7 +36,7 @@ export default defineComponent({
   },
   setup (props) {
     console.log(props)
-    const homeData: any = ref({})
+    const homeData: Ref<IApiHomeData | Record<string, never>> = ref({})
     const reqHomeData = async () => {
       const data = await reqHomeInfo()
       homeData.value = data

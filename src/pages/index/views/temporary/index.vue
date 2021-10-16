@@ -1,7 +1,7 @@
 <template>
   <div class="view-temp">
     <div>{{ count }}</div>
-    <div>{{ count1 }}</div>
+    <div>{{ obj.count1 }}</div>
   </div>
 </template>
 
@@ -10,15 +10,11 @@ import { defineComponent, ref, reactive } from 'vue'
 
 export default defineComponent({
   setup () {
-    const obj = ref({
+    const obj = reactive({
       count1: 0,
     })
     const count = ref(0)
 
-    // setInterval(() => {
-    //   count.value++
-    //   obj.value.count++
-    // }, 1000)
     return {
       count,
       obj,
